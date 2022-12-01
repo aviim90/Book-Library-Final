@@ -22,7 +22,7 @@ class BookController extends Controller
 
         $books=Book::filterByCategory(categoryId:$categoryId)->findByName($name);
         $orders=Order::all();
-        $wishlists=Wishlist::all();
+//        $wishlists=Wishlist::all();
 
         return view('books.index', [
             'books'=>$books,
@@ -30,7 +30,7 @@ class BookController extends Controller
             'filter_category_id'=>$categoryId,
             'findBook'=>$name,
             'orders'=>$orders,
-            'wishlists'=>$wishlists
+//            'wishlists'=>$wishlists
         ]);
     }
 
