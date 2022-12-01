@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +22,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware(['auth'])->group(function(){
+    Route::get('/home',[BookController::class, 'index'])->name('home');
+    Route::resources([
+        'categories'=> CategoryController::class,
+        'books'=> BookController::class,
+        'orders'=> OrderController::class,
+        'wishlists'=> WishlistController::class
+    ]);
+
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

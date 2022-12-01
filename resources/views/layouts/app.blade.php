@@ -30,7 +30,27 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li>
+                            <a class="nav-link" href="{{route('categories.index')}}">Categories</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{route('books.index')}}">Books</a>
+                        </li>
+                        @can('reader')
+                            <li>
+                                <a class="nav-link" href="{{route('orders.index')}}">Orders</a>
+                            </li>
+                        @endcan
+                        @can('reader')
+                            <li>
+                                <a class="nav-link" href="{{route('wishlists.index')}}">Wishlist</a>
+                            </li>
+                        @endcan
+                        @can('canEdit')
+                            <li>
+                                <a class="nav-link" href="{{route('adminindex')}}">Orders</a>
+                            </li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
