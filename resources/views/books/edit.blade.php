@@ -8,15 +8,11 @@
                     <div class="card-header">Books</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{isset($book)?route('books.update',$book->id):route('books.store')}}" enctype="multipart/form-data">
+                        <form method="POST" action="{{isset($book)?route('books.update',$book->id):route('books.store')}}">
                             @csrf
                             @if(isset($book))
                                 @method('put')
                             @endif
-                            <div class="mb-3">
-                                <label class="form-label">Photo</label>
-                                <input class="form-control" type="file" name="image" value="{{isset($book)?$book->photo:''}}">
-                            </div>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
                                 <input class="form-control" type="text" name="name" value="{{isset($book)?$book->name:''}}">
@@ -35,11 +31,11 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Pages</label>
-                                <input class="form-control" type="number" name="pages" value="{{isset($book)?$book->pages:''}}">
+                                <input class="form-control" type="text" name="pages" value="{{isset($book)?$book->pages:''}}">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <input class="form-control" type="text" name="description" value="{{isset($book)?$book->ISBN:''}}">
+                                <label class="form-label">ISBN</label>
+                                <input class="form-control" type="text" name="ISBN" value="{{isset($book)?$book->ISBN:''}}">
                             </div>
                             <button type="submit" class="btn btn-success"> {{isset($book)?'Save':'Add'}}</button>
                         </form>

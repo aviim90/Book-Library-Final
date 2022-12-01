@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('ISBN', 20);
+            $table->string('ISBN', 20)->nullable()->default(null);
             $table->string('photo')->nullable()->default(null);
             $table->integer('pages');
             $table->foreignId('category_id')->constrained();

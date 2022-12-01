@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $orders=Order::all()->where('user_id', Auth::user()->id);
+        return view('orders.index', ['orders'=>$orders]);
+    }
+
+    public function adminindex()
+    {
+        $orders=Order::all();
+        return view('orders.adminindex', ['orders'=>$orders]);
     }
 
     /**
@@ -76,10 +84,12 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Order $order)
+    public function destroy(Order $order, $id)
     {
-        //
+        $order=Order::find($id);
+        $order->delete();
+        return redirect()->back();
     }
 }

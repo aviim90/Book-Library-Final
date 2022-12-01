@@ -30,7 +30,7 @@
                                     </td>
                                     <td>
                                         @can('canEdit')
-                                            <form method="post" action="{{route('$categories.destroy', $category->id)}}">
+                                            <form method="post" action="{{route('categories.destroy', $category->id)}}">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger">Delete</button>

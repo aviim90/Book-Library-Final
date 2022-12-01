@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
-use App\Models\Country;
-use App\Models\Hotel;
 use App\Models\Order;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
@@ -57,12 +55,6 @@ class BookController extends Controller
     {
         $book = new Book();
         $book->fill($request->all());
-        if($request->file('image')!=null){
-            $photo = $request->file('image');
-            $photo_name = $book->id.'.'.$photo->extension();
-            $book->photo=$photo_name;
-            $photo->storeAs('books',$photo_name);
-        }
         $book->save();
         return redirect()->route('books.index');
     }
@@ -102,12 +94,6 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $book->fill($request->all());
-        if($request->file('image')!=null) {
-            $photo = $request->file('image');
-            $photo_name = $book->id.'.'.$photo->extension();
-            $book->photo=$photo_name;
-            $photo->storeAs('books',$photo_name);
-        }
         $book->save();
         return redirect()->route('books.index');
     }
